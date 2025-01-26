@@ -11,19 +11,28 @@ const PORT = 5000;
 app.use(cors()); // Allow frontend to access API
 
 function isVideoFile(arg) {
-  if (arg.toString().endsWith('.css')) {
-    return true;
-  } else {
-    return false;
-  }
+  const validExtensions = [
+    '.webm',
+    '.3gp',
+    '.aac',
+    '.m4a',
+    '.flv',
+    '.mp3',
+    '.mp4',
+    '.ogg',
+    '.wav',
+  ];
+  return validExtensions.some((ext) => arg.toString().endsWith(ext));
 }
+
+//3gp, aac, flv, m4a, mp3, mp4, ogg, wav, webm
 
 // Function to read files
 async function readFiles() {
   const rootPath = path.resolve('./downloads/');
   let files = await fs.readdir(rootPath);
 
-  console.log('working on rootPath:' + rootPath);
+  // console.log('working on rootPath:' + rootPath);
 
   // Filter for CSS files (modify this if needed)
   files = files.filter(isVideoFile);
