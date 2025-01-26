@@ -1,16 +1,29 @@
-"use strict";
-import { useState } from "react";
+'use strict';
 
-import Item from "./components/items.jsx";
-import { readFiles } from "./serverSide.js";
+import { useState, useEffect } from 'react';
+import Item from './components/items.jsx';
 
 function Home() {
+  const [files, setFiles] = useState([]);
+
+  useEffect(() => {
+    async function getFiles() {
+      const response = await fetch('http://localhost:5000/files');
+      const data = await response.json();
+      setFiles(data);
+    }
+
+    getFiles();
+  }, []);
+
   return (
     <div className="home">
+      <p>TEST</p>
       <div className="listBox">
-        <div className="listItem">
-          <Item arg={something} />
-        </div>
+        <div className="listItem"></div>
+        {files.map((file) => (
+          <Item arg={file} key={file.id} />
+        ))}
       </div>
     </div>
   );

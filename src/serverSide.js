@@ -1,16 +1,16 @@
-import fs from "fs/promises";
+import fs from 'fs/promises';
 
-const readFiles = async () => {
+export const readFiles = async () => {
   //map validation
   function isVideoFile(arg) {
-    if (arg.toString().endsWith(".css")) {
+    if (arg.toString().endsWith('.css')) {
       return true;
     } else {
       return false;
     }
   }
   //read
-  const rootPath = ".";
+  const rootPath = '.';
   let files = await fs.readdir(rootPath);
   files = files.filter(isVideoFile);
 
@@ -28,8 +28,6 @@ const readFiles = async () => {
 };
 
 console.log(await readFiles());
-
-export { readFiles };
 
 ////template
 //const fileObj = [
