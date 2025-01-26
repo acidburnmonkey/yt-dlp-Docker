@@ -1,23 +1,38 @@
+//must be manually started:  node server.js
+
 import express from 'express';
 import fs from 'fs/promises';
 import cors from 'cors';
+import path from 'path';
 
 const app = express();
-const PORT = 5000; // You can change this if needed
+const PORT = 5000;
 
 app.use(cors()); // Allow frontend to access API
 
+function isVideoFile(arg) {
+  if (arg.toString().endsWith('.css')) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 // Function to read files
 async function readFiles() {
-  const rootPath = './'; // Change this to the directory you want to read
+  const rootPath = path.resolve('./downloads/');
   let files = await fs.readdir(rootPath);
 
+  console.log('working on rootPath:' + rootPath);
+
   // Filter for CSS files (modify this if needed)
-  files = files.filter((file) => file.endsWith('.css'));
+  files = files.filter(isVideoFile);
 
   const objList = await Promise.all(
     files.map(async (file, i) => {
-      let fileStats = await fs.stat(file);
+      let filePath = path.join(rootPath, file);
+      let fileStats = await fs.stat(filePath);
+
       return {
         id: i,
         name: file,

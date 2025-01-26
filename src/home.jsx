@@ -14,6 +14,9 @@ function Home() {
     }
 
     getFiles();
+
+    const interval = setInterval(getFiles, 1000); // Refresh every second
+    return () => clearInterval(interval);
   }, []);
 
   return (
