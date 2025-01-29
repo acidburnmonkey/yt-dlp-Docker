@@ -1,10 +1,13 @@
-"use strict";
+'use strict';
 
 function Item({ arg }) {
   return (
     <div>
-      <h2 className="item">{arg.name}</h2>
-      <p>{arg.date}</p>
+      <h3 className="item">{arg.name}</h3>
+      <p> {arg.mDate} </p>
+      <div className="item-overlay">
+        <button className="item-rename"> </button>
+      </div>
     </div>
   );
 }
