@@ -1,14 +1,16 @@
-//must be manually started:  node server.js
+//must be manually started: node serverside/server.js
 
 import express from 'express';
 import fs from 'fs/promises';
 import cors from 'cors';
 import path from 'path';
+import { spawn } from 'node:child_process';
 
 const app = express();
 const PORT = 5000;
 
 app.use(cors()); // Allow frontend to access API
+app.use(express.json()); // For /download
 
 function isVideoFile(arg) {
   const validExtensions = [
@@ -62,6 +64,35 @@ app.get('/files', async (req, res) => {
     console.error('Error reading files:', error);
     res.status(500).json({ error: 'Failed to read files' });
   }
+});
+
+// Download api with yt-dlp
+app.post('/download', async (req, res) => {
+  const { url } = req.body;
+  console.log(url);
+  if (!url) {
+    return res.status(400).json({ error: 'No URL provided' });
+  }
+
+  const argument = 'https://www.youtube.com/watch?v=o3X1bTGsOyQ';
+  const binary = spawn('./serverside/yt-dlp_linux', [
+    url,
+    '--progress',
+    '-o',
+    './downloads/%(title)s.%(ext)s',
+  ]);
+
+  binary.stdout.on('data', (data) => {
+    console.log(data.toString());
+  });
+
+  binary.stderr.on('data', (err) => {
+    console.log('some error :', err);
+  });
+
+  binary.on('close', (code) => {
+    console.log('yt-dlp_linux exit with code :', code);
+  });
 });
 
 // Start Server
