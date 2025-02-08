@@ -1,0 +1,78 @@
+body {
+  background-color: #1e1e2e;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.imputField {
+  flex: 1 1 auto;
+  background-color: #11111b;
+  height: 28px;
+  width: 471px;
+  border: 1px solid #b4befe;
+}
+
+.submit {
+  flex: 1 1 auto;
+  border-radius: 9px;
+  margin: 10px;
+}
+
+.downloadForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: 0.8rem;
+  background-color: rgba(88, 91, 112, 0.5699999928474426);
+  border-radius: 3px;
+  border: 1px solid rgba(180, 190, 254, 0.5699999928474426);
+}
+
+.listBox {
+  display: grid;
+  flex-direction: column;
+  grid-gap: 5px;
+}
+
+.underlay {
+  background-color: rgba(108, 112, 134, 0.4099999964237213);
+  min-height: 536px;
+  min-width: 596px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 22px;
+  padding: 10px;
+}
