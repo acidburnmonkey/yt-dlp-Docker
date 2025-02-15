@@ -1,8 +1,11 @@
 'use strict';
-import '../css/style.css';
 import '../css/items.css';
 
 function Item({ arg }) {
+  const rename = () => {
+    alert(arg.name);
+  };
+
   return (
     <div className="item">
       <h3 className="itemName">{arg.name}</h3>
@@ -10,7 +13,9 @@ function Item({ arg }) {
         <p> {arg.mDate} </p>
       </div>
       <div className="item-rename">
-        <button className="item-rename">  </button>
+        <button className="button-rename" onClick={rename}>
+          
+        </button>
       </div>
     </div>
   );

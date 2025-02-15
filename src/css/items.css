@@ -1,4 +1,19 @@
+@font-face {
+    font-family: 'FiraMono';
+    src: url('../assets/FiraMonoNerdFontMono-Regular.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../assets/Roboto-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .item {
+    font-family: Roboto;
     display: flex;
     flex-direction: row;
     font-size: 0.8rem;
@@ -8,11 +23,17 @@
     align-items: center;
 }
 
+.itemName {
+    margin-left: 3px;
+}
+
 .date {
     margin-left: auto;
 }
 
 .item-rename {
     margin-left: 10px;
-    margin-right: 2px;
+    margin-right: 3px;
+    font-family: 'FiraMono', roboto;
+    font-size: 15px;
 }
