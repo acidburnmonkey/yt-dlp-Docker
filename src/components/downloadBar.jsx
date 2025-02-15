@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import '../style.css';
+import '../css/downloadBar.css';
 
 function DownloadBar() {
     const [value, setValue] = useState('');

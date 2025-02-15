@@ -1,0 +1,18 @@
+.item {
+    display: flex;
+    flex-direction: row;
+    font-size: 0.8rem;
+    background-color: rgba(88, 91, 112, 0.5699999928474426);
+    border-radius: 3px;
+    border: 1px solid rgba(180, 190, 254, 0.5699999928474426);
+    align-items: center;
+}
+
+.date {
+    margin-left: auto;
+}
+
+.item-rename {
+    margin-left: 10px;
+    margin-right: 2px;
+}
