@@ -3,6 +3,7 @@ import './css/style.css';
 import { useState, useEffect } from 'react';
 import Item from './components/items.jsx';
 import DownloadBar from './components/downloadBar.jsx';
+import TopBar from './components/topBar.jsx';
 
 function Home() {
   const [files, setFiles] = useState([]);
@@ -21,6 +22,7 @@ function Home() {
 
   return (
     <div className="home">
+      <TopBar />
       <div className="downloadForm" id="downloadForm">
         <DownloadBar />
       </div>

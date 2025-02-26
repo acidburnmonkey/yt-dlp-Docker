@@ -1,41 +1,41 @@
 body {
-  background-color: #1e1e2e;
+    background-color: #1c1c2b;
 }
 
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
 }
 
 .home {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
 }
 
 .downloadForm {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .listBox {
-  display: grid;
-  flex-direction: column;
-  grid-gap: 5px;
+    display: grid;
+    flex-direction: column;
+    grid-gap: 5px;
 }
 
 .underlay {
-  background-color: rgba(108, 112, 134, 0.4099999964237213);
-  min-height: 536px;
-  min-width: 596px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  border-radius: 22px;
-  padding: 10px;
+    background-color: rgba(108, 112, 134, 0.4099999964237213);
+    min-height: 536px;
+    min-width: 800px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 22px;
+    padding: 10px;
 }
