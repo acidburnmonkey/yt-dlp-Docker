@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Item from './components/items.jsx';
 import DownloadBar from './components/downloadBar.jsx';
 import TopBar from './components/topBar.jsx';
+import Options from './components/options.jsx';
 
 function Home() {
   const [files, setFiles] = useState([]);
@@ -25,6 +26,10 @@ function Home() {
       <TopBar />
       <div className="downloadForm" id="downloadForm">
         <DownloadBar />
+      </div>
+      <div>
+        {' '}
+        <Options />{' '}
       </div>
       <div className="underlay">
         <div className="listBox">

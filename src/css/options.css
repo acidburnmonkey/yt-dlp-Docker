@@ -1,0 +1,74 @@
+.optionsContainer {
+    display: flex;
+    justify-content: space-between;
+    background-color: #2e2e42;
+    border-radius: 20px;
+    padding: 2rem;
+    color: white;
+    font-family: sans-serif;
+    max-width: 60rem;
+    margin: 1rem auto;
+    gap: 2rem;
+}
+
+.leftColum,
+.rightColum {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Switch label wrapper */
+.switch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-width: 20rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: white;
+    transition: color 0.2s;
+}
+
+/* Hide default checkbox */
+.switch input {
+    display: none;
+}
+
+/* Custom slider */
+.slider {
+    position: relative;
+    width: 50px;
+    height: 28px;
+    background-color: #3f3f46;
+    border-radius: 34px;
+    transition: background-color 0.2s;
+    margin-left: 1rem;
+}
+
+.slider::before {
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: transform 0.2s;
+    border-radius: 50%;
+}
+
+/* Checked slider */
+input:checked+.slider {
+    background-color: hsl(212.02, 100%, 46.67%);
+}
+
+input:checked+.slider::before {
+    transform: translateX(22px);
+}
+
+/* Round slider class */
+.slider.round {
+    border-radius: 34px;
+}
