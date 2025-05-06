@@ -1,3 +1,4 @@
+// handles by server.js now
 import { spawn } from 'node:child_process';
 
 const argument = 'https://www.youtube.com/watch?v=XqRFvU06Gg4';
