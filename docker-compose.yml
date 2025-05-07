@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  ytdlpd:
+    build: .
+    ports:
+      - '8080:5000' # maps external 8080 to internal 5000
+    volumes:
+      - ./my_downloads:/app/downloads
+    restart: unless-stopped

@@ -20,7 +20,7 @@ function Home() {
 
   useEffect(() => {
     async function getFiles() {
-      const response = await fetch('http://localhost:5022/files');
+      const response = await fetch('/files');
       const data = await response.json();
       setFiles(data);
     }

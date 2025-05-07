@@ -5,9 +5,10 @@ import fs from 'fs/promises';
 import cors from 'cors';
 import path from 'path';
 import { spawn } from 'node:child_process';
+import { fileURLToPath } from 'url';
 
 const app = express();
-const PORT = 5022;
+const PORT = 5000;
 
 app.use(cors()); // Allow frontend to access API
 app.use(express.json()); // For /download
@@ -79,7 +80,7 @@ app.post('/download', async (req, res) => {
     '-s',
     ...passArgs,
     '-o',
-    './downloads/%(title)s.%(ext)s',
+    '%(title)s.%(ext)s',
     url,
   ]);
 
@@ -102,3 +103,12 @@ app.post('/download', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
+
+//front end docker
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+app.use(express.static(path.resolve('dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve('dist/index.html'));
+}); // Serve static frontend files from dist/
