@@ -14,16 +14,16 @@ function DownloadBar() {
     passedArgs.push('-x');
   }
   if (contextData.sponsorBlock) {
-    passedArgs.push('--sponsorblock-remove all -f "bv*+ba/b"');
+    passedArgs.push('--sponsorblock-remove', 'all');
   }
   if (contextData.entirePlaylist) {
     passedArgs.push('--yes-playlist');
   }
   if (contextData.splitChaptersAudio) {
-    passedArgs.push('-x --split-chapters --audio-format mp3 --audio-quality 0');
+    passedArgs.push('-x', '--split-chapters');
   }
   if (contextData.splitChaptersVideo) {
-    passedArgs.push('--split-chapters -f "bv*+ba/b"');
+    passedArgs.push('--split-chapters', '-f', 'bv*+ba/b');
   }
 
   const downloadHandler = async (e) => {

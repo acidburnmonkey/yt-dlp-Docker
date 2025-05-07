@@ -74,14 +74,16 @@ app.post('/download', async (req, res) => {
     return res.status(400).json({ error: 'No URL provided' });
   }
 
-  const argument = 'https://www.youtube.com/watch?v=o3X1bTGsOyQ';
   const binary = spawn('./serverside/yt-dlp_linux', [
-    url,
     '--progress',
+    '-s',
     ...passArgs,
     '-o',
     './downloads/%(title)s.%(ext)s',
+    url,
   ]);
+
+  console.log('Spawning:', ['./serverside/yt-dlp_linux', ...passArgs]);
 
   binary.stdout.on('data', (data) => {
     console.log(data.toString());
