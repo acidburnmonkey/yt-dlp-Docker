@@ -7,7 +7,7 @@ import path from 'path';
 import { spawn } from 'node:child_process';
 
 const app = express();
-const PORT = 5000;
+const PORT = 5022;
 
 app.use(cors()); // Allow frontend to access API
 app.use(express.json()); // For /download

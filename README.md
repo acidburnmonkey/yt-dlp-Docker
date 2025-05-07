@@ -1,8 +1,8 @@
-# React + Vite
+# yt-dlp Docker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a docker implementation of [@yt-dlp](https://github.com/yt-dlp/yt-dlp) version [2025.04.30]
 
-Currently, two official plugins are available:
+![](./repo/1img.png)
+![](./repo/2img.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##

@@ -31,7 +31,7 @@ function DownloadBar() {
     console.log('passedArgs: ', passedArgs);
 
     try {
-      const response = await fetch('http://localhost:5000/download', {
+      const response = await fetch('http://localhost:5022/download', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
