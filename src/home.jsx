@@ -7,6 +7,7 @@ import TopBar from './components/topBar.jsx';
 import Options from './components/options.jsx';
 
 export const ContexPortal = createContext();
+
 function Home() {
   const [files, setFiles] = useState([]);
   const [contextData, setContextData] = useState({

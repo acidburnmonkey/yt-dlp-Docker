@@ -68,7 +68,7 @@ app.get('/files', async (req, res) => {
 
 // Download api with yt-dlp
 app.post('/download', async (req, res) => {
-  const { url } = req.body;
+  const { url, passArgs } = req.body;
   console.log(url);
   if (!url) {
     return res.status(400).json({ error: 'No URL provided' });
@@ -78,6 +78,7 @@ app.post('/download', async (req, res) => {
   const binary = spawn('./serverside/yt-dlp_linux', [
     url,
     '--progress',
+    ...passArgs,
     '-o',
     './downloads/%(title)s.%(ext)s',
   ]);
