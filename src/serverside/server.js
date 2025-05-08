@@ -24,6 +24,7 @@ function isVideoFile(arg) {
     '.mp4',
     '.ogg',
     '.wav',
+    '.opus',
   ];
   return validExtensions.some((ext) => arg.toString().endsWith(ext));
 }
@@ -77,10 +78,9 @@ app.post('/download', async (req, res) => {
 
   const binary = spawn('./serverside/yt-dlp_linux', [
     '--progress',
-    '-s',
     ...passArgs,
     '-o',
-    '%(title)s.%(ext)s',
+    './downloads/%(title)s.%(ext)s',
     url,
   ]);
 
