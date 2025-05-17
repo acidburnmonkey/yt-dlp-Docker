@@ -76,27 +76,47 @@ app.post('/download', async (req, res) => {
     return res.status(400).json({ error: 'No URL provided' });
   }
 
-  const binary = spawn('./serverside/yt-dlp_linux', [
-    '--progress',
-    ...passArgs,
-    '-o',
-    './downloads/%(title)s.%(ext)s',
-    url,
-  ]);
+  try {
+    const binary = spawn('./serverside/yt-dlp_linux', [
+      '--progress',
+      ...passArgs,
+      '-o',
+      './downloads/%(title)s.%(ext)s',
+      url,
+    ]);
 
-  console.log('Spawning:', ['./serverside/yt-dlp_linux', ...passArgs]);
+    let stdout = '';
+    let stderr = '';
 
-  binary.stdout.on('data', (data) => {
-    console.log(data.toString());
-  });
+    // Collect stdout
+    binary.stdout.on('data', (data) => {
+      stdout += data.toString();
+    });
 
-  binary.stderr.on('data', (err) => {
-    console.log('some error :', err);
-  });
+    // Collect stderr
+    binary.stderr.on('data', (data) => {
+      stderr += data.toString();
+    });
 
-  binary.on('close', (code) => {
-    console.log('yt-dlp_linux exit with code :', code);
-  });
+    // Wait for the process to finish, then send the response
+    binary.on('close', (code) => {
+      if (code === 0) {
+        // Success case: Send stdout
+        res.status(200).json({ message: 'Download completed', output: stdout });
+      } else {
+        // Error case: Send stderr
+        res.status(500).json({ error: 'Download failed', output: stderr });
+      }
+    });
+  } catch (error) {
+    // Handle errors in spawning the process
+    console.error('Error spawning yt-dlp:', error);
+    res
+      .status(500)
+      .json({ error: 'Failed to start download', output: error.message });
+  }
+
+  //
 });
 
 // Start Server

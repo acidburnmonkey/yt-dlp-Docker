@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react';
 import '../css/downloadBar.css';
 import { ContexPortal } from '../home';
-import Item from './items';
 
 function DownloadBar() {
   const [value, setValue] = useState('');
@@ -29,7 +28,6 @@ function DownloadBar() {
   const downloadHandler = async (e) => {
     e.preventDefault();
     console.log('passedArgs: ', passedArgs);
-
     try {
       const response = await fetch('/download', {
         method: 'POST',
@@ -38,10 +36,23 @@ function DownloadBar() {
         },
         body: JSON.stringify({ url: value, passArgs: passedArgs }),
       });
-      const data = await response.json();
-      console.log('Server response:', data);
+
+      if (response.ok) {
+        const data = await response.json();
+        // Show success message with stdout
+        alert(data.message + '\n' + (data.output || ''));
+      } else {
+        const errorData = await response.json();
+        // Show error message with stderr (or other output if present)
+        alert(
+          'Error: ' +
+            errorData.error +
+            (errorData.output ? '\n' + errorData.output : ''),
+        );
+      }
     } catch (error) {
       console.error('Error sending link to server:', error);
+      alert('Error sending link to server');
     }
   };
 
@@ -49,7 +60,7 @@ function DownloadBar() {
     <div className="form">
       <form onSubmit={downloadHandler}>
         <input
-          className="imputField"
+          className="inputField"
           type="text"
           value={value}
           onChange={(e) => setValue(e.target.value)}
@@ -61,5 +72,7 @@ function DownloadBar() {
       </form>
     </div>
   );
+
+  //
 }
 export default DownloadBar;

@@ -1,27 +1,27 @@
 .form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
-.imputField {
-  flex: 1 1 auto;
-  background-color: #11111b;
-  height: 28px;
-  width: 471px;
-  border: 1px solid #b4befe;
+.inputField {
+    flex: 1 1 auto;
+    background-color: #11111b;
+    height: 28px;
+    width: 471px;
+    border: 1px solid #b4befe;
 }
 
 .submit {
-  flex: 1 1 auto;
-  border-radius: 9px;
-  margin: 10px;
+    flex: 1 1 auto;
+    border-radius: 9px;
+    margin: 10px;
 }
