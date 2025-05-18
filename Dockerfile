@@ -1,5 +1,5 @@
 # Stage 1: Build Vite React frontend
-FROM node:20 AS builder
+FROM node:24-alpine AS builder
 
 WORKDIR /app
 
@@ -15,7 +15,7 @@ RUN npm install
 RUN npm run build
 
 # Stage 2: Production image with API, frontend, and ffmpeg
-FROM node:20
+FROM node:24-alpine
 
 # Install ffmpeg
 RUN apt update && apt install -y ffmpeg && rm -rf /var/lib/apt/lists/*
@@ -43,4 +43,3 @@ ENV PORT=5000
 CMD ["node", "serverside/server.js"]
 
 EXPOSE 5000
-

@@ -25,9 +25,11 @@ function DownloadBar() {
     passedArgs.push('--split-chapters', '-f', 'bv*+ba/b');
   }
 
+  //downloadHandler
   const downloadHandler = async (e) => {
     e.preventDefault();
     console.log('passedArgs: ', passedArgs);
+
     try {
       const response = await fetch('/download', {
         method: 'POST',
@@ -53,6 +55,8 @@ function DownloadBar() {
     } catch (error) {
       console.error('Error sending link to server:', error);
       alert('Error sending link to server');
+    } finally {
+      document.getElementById('inputField').value = '';
     }
   };
 
@@ -60,10 +64,11 @@ function DownloadBar() {
     <div className="form">
       <form onSubmit={downloadHandler}>
         <input
+          id="inputField"
           className="inputField"
           type="text"
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={(e) => setValue(e.target.value)} //test
           placeholder="enter link"
         />
         <button className="submit" type="submit">
