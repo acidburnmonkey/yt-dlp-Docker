@@ -1,10 +1,14 @@
 import { useContext, useState } from 'react';
 import '../css/downloadBar.css';
 import { ContexPortal } from '../home';
+import AlertComponent from './alertComponent';
 
 function DownloadBar() {
   const [value, setValue] = useState('');
   const { contextData, setContextData } = useContext(ContexPortal);
+  const [visible, setVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [alertType, setAlertType] = useState('ok');
 
   let passedArgs = [];
 
@@ -25,6 +29,14 @@ function DownloadBar() {
     passedArgs.push('--split-chapters', '-f', 'bv*+ba/b');
   }
 
+  // helper to show & auto-hide alert
+  const showAlert = (msg, type) => {
+    setAlertMessage(msg);
+    setAlertType(type);
+    setVisible(true);
+    setTimeout(() => setVisible(false), 4000);
+  };
+
   //downloadHandler
   const downloadHandler = async (e) => {
     e.preventDefault();
@@ -41,12 +53,17 @@ function DownloadBar() {
 
       if (response.ok) {
         const data = await response.json();
-        // Show success message with stdout
-        alert(data.message + '\n' + (data.output || ''));
+
+        showAlert('Media Downloaded' || 'Download started!', 'ok');
+
+        //debugg OK
+        console.log(data.message + '\n' + (data.output || ''));
       } else {
         const errorData = await response.json();
-        // Show error message with stderr (or other output if present)
-        alert(
+        showAlert(errorData.output || 'Something went wrong', 'err');
+
+        //Debug
+        console.log(
           'Error: ' +
             errorData.error +
             (errorData.output ? '\n' + errorData.output : ''),
@@ -54,28 +71,32 @@ function DownloadBar() {
       }
     } catch (error) {
       console.error('Error sending link to server:', error);
-      alert('Error sending link to server');
     } finally {
+      setValue((v) => (v = ''));
       document.getElementById('inputField').value = '';
     }
   };
 
   return (
-    <div className="form">
-      <form onSubmit={downloadHandler}>
-        <input
-          id="inputField"
-          className="inputField"
-          type="text"
-          value={value}
-          onChange={(e) => setValue(e.target.value)} //test
-          placeholder="enter link"
-        />
-        <button className="submit" type="submit">
-          Download
-        </button>
-      </form>
-    </div>
+    <>
+      <div className="form">
+        <form onSubmit={downloadHandler}>
+          <input
+            id="inputField"
+            className="inputField"
+            type="text"
+            value={value}
+            onChange={(e) => setValue(e.target.value)} //test
+            placeholder="enter link"
+          />
+          <button className="submit" type="submit">
+            Download
+          </button>
+        </form>
+      </div>
+
+      {visible && <AlertComponent message={alertMessage} type={alertType} />}
+    </>
   );
 
   //
