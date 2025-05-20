@@ -2,3 +2,4 @@ src/downloads/*
 test.js
 src/dplScripts.sh
 node_modules/
+my_downloads/
